@@ -2,8 +2,7 @@ package Authentication;
 
 import Models.LoginResponse;
 import Models.Secured;
-import Authentication.SimpleKeyGenerator;
-import Service.KwetterService;
+import Service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -24,7 +23,7 @@ import java.io.IOException;
 public class AuthenticationFilter implements ContainerRequestFilter {
 
     @Inject
-    KwetterService service;
+    UserService service;
 
     SimpleKeyGenerator key = new SimpleKeyGenerator();
 

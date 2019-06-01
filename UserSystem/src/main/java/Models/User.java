@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Default;
 import javax.inject.Named;
 import javax.persistence.*;
 import javax.ws.rs.core.Link;
@@ -11,15 +12,25 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
+import javax.persistence.*;
+import javax.ws.rs.core.Link;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+@Default
 @Entity
-@Table(name = "user")
-@NamedQueries({
-        @NamedQuery(name="User.getUsers",
-                query="SELECT u FROM User u"),
-        @NamedQuery(name="User.getUser",
-                query="SELECT u FROM User u WHERE u.username = :id"),
-        @NamedQuery(name="User.searchUser",
-                query="SELECT u FROM User u INNER JOIN Profile p ON u.profile = p WHERE u.username LIKE :username"),
+@Table(name = "tbl_user")
+@NamedQueries(value = {
+        @NamedQuery(name = "User.getUsers",
+                query = "SELECT u FROM User u"),
+        @NamedQuery(name = "User.getUser",
+                query = "SELECT u FROM User u WHERE u.username = :id"),
         @NamedQuery(name = "User.getUserByLoginPassword",
                 query = "SELECT u FROM User u WHERE u.username = :username AND u.password = :password"),
 
@@ -37,7 +48,7 @@ public class User implements Serializable {
     @Column
     private String password;
 
-    @javax.persistence.Transient
+    @Transient
     private List<Link> selfLinks = new ArrayList<>();
 
     public User(){

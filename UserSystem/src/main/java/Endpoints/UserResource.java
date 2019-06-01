@@ -1,29 +1,32 @@
 package Endpoints;
 
+import Authentication.AuthenticationUtils;
 import Models.Secured;
-import Models.User;
-import Service.KwetterService;
+import Service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import Models.User;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;
 
+import static javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
+
 @ApplicationPath("/api")
 @Path("/user")
-public class UserResource {
+public class UserResource extends Application {
     //HATEOAS CODE:
 
     @Context
     private UriInfo uriInfo;
 
     @Inject
-    KwetterService service;
+    UserService service;
 
     private ObjectMapper mapper = new ObjectMapper();
 
@@ -46,6 +49,16 @@ public class UserResource {
 
         return Response.ok(genericEntity)
                 .links(self, allLink, searchLink).build();
+    }
+
+    @POST
+    @Path("register")
+    @Consumes(APPLICATION_FORM_URLENCODED)
+    public void addUser(@FormParam("username") String username,
+                        @FormParam("password") String password
+    ) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        User user = new User(username, AuthenticationUtils.encodeSHA256(password));
+        service.addUser(user);
     }
 
     @GET

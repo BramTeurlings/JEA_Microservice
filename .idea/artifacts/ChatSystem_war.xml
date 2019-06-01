@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ChatSystem:war">
+    <output-path>$PROJECT_DIR$/ChatSystem/target</output-path>
+    <root id="archive" name="ChatSystem-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="ChatSystem:war exploded" />
+    </root>
+  </artifact>
+</component>

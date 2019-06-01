@@ -1,5 +1,9 @@
 package Models;
 
+import Models.User;
+
+import javax.ejb.Stateless;
+import javax.inject.Named;
 import javax.persistence.*;
 import javax.ws.rs.core.Link;
 import java.util.ArrayList;
@@ -20,6 +24,8 @@ import java.util.List;
                 query="SELECT k FROM Kweet k WHERE k.author.username = :username")
 
 })
+@Named("kweet")
+@Stateless
 public class Kweet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

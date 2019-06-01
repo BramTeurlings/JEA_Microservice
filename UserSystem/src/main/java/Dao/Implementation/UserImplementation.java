@@ -44,11 +44,6 @@ public class UserImplementation implements UserDao
     }
 
     @Override
-    public User authenticate(String username, String password) {
-        throw new NotImplementedException();
-    }
-
-    @Override
     public List<User> searchUsers(String username) {
         throw new NotImplementedException();
     }

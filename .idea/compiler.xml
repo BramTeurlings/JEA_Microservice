@@ -6,12 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="AuthenticationSystem" />
+        <module name="ChatSystem" />
         <module name="JEA_Microservice" />
+        <module name="shared" />
         <module name="UserSystem" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="AuthenticationSystem" target="1.8" />
+      <module name="ChatSystem" target="1.8" />
       <module name="JEA_Microservice" target="1.8" />
+      <module name="shared" target="1.7" />
       <module name="UserSystem" target="1.8" />
     </bytecodeTargetLevel>
   </component>

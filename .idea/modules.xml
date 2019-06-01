@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AuthenticationSystem/AuthenticationSystem.iml" filepath="$PROJECT_DIR$/AuthenticationSystem/AuthenticationSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ChatSystem/ChatSystem.iml" filepath="$PROJECT_DIR$/ChatSystem/ChatSystem.iml" />
       <module fileurl="file://$PROJECT_DIR$/JEA_Microservice.iml" filepath="$PROJECT_DIR$/JEA_Microservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/UserSystem/UserSystem.iml" filepath="$PROJECT_DIR$/UserSystem/UserSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shared/shared.iml" filepath="$PROJECT_DIR$/shared/shared.iml" />
     </modules>
   </component>
 </project>
