@@ -1,4 +1,4 @@
-package Authentication;
+package models;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.ejb.Stateless;

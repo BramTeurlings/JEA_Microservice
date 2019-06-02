@@ -1,4 +1,4 @@
-package Authentication;
+package models;
 
 import javax.xml.bind.DatatypeConverter;
 import java.io.UnsupportedEncodingException;

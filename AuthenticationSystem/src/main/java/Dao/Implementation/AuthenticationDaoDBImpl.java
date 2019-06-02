@@ -1,7 +1,7 @@
 package Dao.Implementation;
 
 import Dao.AuthenticationDao;
-import Authentication.PasswordUtils;
+import models.PasswordUtils;
 import models.User;
 
 import javax.ejb.Stateless;

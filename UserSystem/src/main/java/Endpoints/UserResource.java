@@ -1,11 +1,11 @@
 package Endpoints;
 
-import Authentication.AuthenticationUtils;
-import Models.Secured;
+import models.AuthenticationUtils;
+import models.Secured;
 import Service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import Models.User;
+import models.User;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;

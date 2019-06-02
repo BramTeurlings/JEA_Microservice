@@ -1,4 +1,4 @@
-package Models;
+package models;
 
 import javax.ws.rs.NameBinding;
 import java.lang.annotation.Retention;

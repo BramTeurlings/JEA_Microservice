@@ -16,6 +16,13 @@
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.8.10" />
           <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-annotations-api:8.5.27" />
           <element id="library" level="project" name="Maven: io.jsonwebtoken:jjwt:0.9.0" />
+          <element id="archive" name="JEA_Microservice.shared-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="shared" />
+          </element>
+          <element id="library" level="project" name="Maven: javax.persistence:javax.persistence-api:2.2" />
+          <element id="library" level="project" name="Maven: javax:javaee-api:8.0" />
+          <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.6.0" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
         </element>
       </element>
       <element id="directory" name="META-INF">

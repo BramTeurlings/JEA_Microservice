@@ -1,7 +1,7 @@
 package Dao;
 
 import Models.Group;
-import Models.User;
+import models.User;
 
 import java.util.List;
 

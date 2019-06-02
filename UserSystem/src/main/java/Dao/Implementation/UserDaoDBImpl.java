@@ -1,9 +1,9 @@
 package Dao.Implementation;
 
-import Authentication.AuthenticationUtils;
+import models.AuthenticationUtils;
 import Dao.UserDao;
 import Models.Group;
-import Models.User;
+import models.User;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;

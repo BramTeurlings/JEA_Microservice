@@ -1,4 +1,4 @@
-package Authentication;
+package models;
 
 import java.security.MessageDigest;
 import java.util.Base64;

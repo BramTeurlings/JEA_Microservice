@@ -35,6 +35,7 @@ public class User implements Serializable {
     @Column
     private String password;
 
+    @JsonIgnore
     @Transient
     private List<Link> selfLinks = new ArrayList<>();
 

@@ -1,14 +1,10 @@
-package Authentication;
+package models;
 
-import Models.LoginResponse;
-import Models.Secured;
-import Service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 
 import javax.annotation.Priority;
-import javax.inject.Inject;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
@@ -21,9 +17,6 @@ import java.io.IOException;
 @Provider
 @Priority(Priorities.AUTHENTICATION)
 public class AuthenticationFilter implements ContainerRequestFilter {
-
-    @Inject
-    UserService service;
 
     SimpleKeyGenerator key = new SimpleKeyGenerator();
 
@@ -49,7 +42,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         LoginResponse user = mapper.readValue(readableHeader, LoginResponse.class);
 
         //Validate the user
-        if(service.getUser(user.user.getUsername()) == null){
+        if(user.user.getUsername() == null){
             abortWithUnauthorized(requestContext);
         }
 

@@ -2,7 +2,7 @@ package Dao.Implementation;
 
 import Dao.UserDao;
 import Models.Group;
-import Models.User;
+import models.User;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.ejb.Stateless;

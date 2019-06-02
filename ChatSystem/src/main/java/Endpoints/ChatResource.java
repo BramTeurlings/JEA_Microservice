@@ -4,13 +4,17 @@ import Models.Kweet;
 import Service.ChatService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import models.Secured;
+import models.User;
 
 import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @ApplicationPath("/api")
@@ -45,6 +49,25 @@ public class ChatResource extends Application {
 
         return Response.ok(genericEntity)
                 .links(self, allLink, searchLink).build();
+    }
+
+    @POST
+    @Secured
+    @Path("addKweet")
+    @Consumes("application/json")
+    public void addKweet(@QueryParam("content") String message,
+                         @QueryParam("author") String author){
+        try {
+            User user = mapper.readValue(author, User.class);
+            Kweet kweet = new Kweet();
+            kweet.setMessage(message);
+            kweet.setAuthor(user);
+            kweet.setTimestamp(new Date());
+            service.addKweet(kweet);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @GET

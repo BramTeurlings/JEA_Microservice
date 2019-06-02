@@ -2,7 +2,7 @@ package Service;
 
 import Dao.UserDao;
 import Models.Group;
-import Models.User;
+import models.User;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;

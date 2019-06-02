@@ -1,6 +1,6 @@
 package Models;
 
-import Models.User;
+import models.User;
 
 import javax.ejb.Stateless;
 import javax.inject.Named;
