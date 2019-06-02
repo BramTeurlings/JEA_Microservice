@@ -32,6 +32,7 @@ public class ChatResource extends Application {
     private ObjectMapper mapper = new ObjectMapper();
 
     @GET
+    @Secured
     @Produces("application/json")
     public Response getIndex(@Context UriInfo uriInfo){
         List<Kweet> kweets = service.getKweets();
@@ -71,6 +72,7 @@ public class ChatResource extends Application {
     }
 
     @GET
+    @Secured
     @Path("/all")
     @Produces("application/json")
     public String getAll(){
@@ -84,6 +86,7 @@ public class ChatResource extends Application {
     }
 
     @GET
+    @Secured
     @Path("/searchTerm/{term}")
     @Produces("application/json")
     public String searchKweet(@PathParam("term") String term){

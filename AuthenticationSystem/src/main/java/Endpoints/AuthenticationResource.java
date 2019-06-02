@@ -1,7 +1,7 @@
 package Endpoints;
 
 import models.SimpleKeyGenerator;
-import Models.LoginResponse;
+import models.LoginResponse;
 import Service.AuthenticationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;

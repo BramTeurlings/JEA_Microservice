@@ -24,7 +24,7 @@ import java.util.List;
 })
 public class Kweet {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column
@@ -34,10 +34,10 @@ public class Kweet {
     @Temporal(TemporalType.TIMESTAMP)
     private Date timestamp;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private User author;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private User recipient;
 
     @Transient

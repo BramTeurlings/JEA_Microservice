@@ -1,7 +1,5 @@
 package models;
 
-import models.User;
-
 public class LoginResponse {
 
     public String token;

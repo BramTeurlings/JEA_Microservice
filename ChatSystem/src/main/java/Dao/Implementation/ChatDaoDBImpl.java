@@ -13,7 +13,7 @@ import java.util.List;
 
 @Stateless
 public class ChatDaoDBImpl implements ChatDao {
-    @PersistenceContext(unitName = "NewPersistenceUnit")
+    @PersistenceContext(unitName = "ChatPersistenceUnit")
     public EntityManager em;
 
     public List<Kweet> getKweets() {

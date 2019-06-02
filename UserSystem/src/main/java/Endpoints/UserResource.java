@@ -76,12 +76,11 @@ public class UserResource extends Application {
     }
 
     @GET
-    @Secured
     @Path("{username}")
     @Produces("application/json")
     public String getUser(@PathParam("username") String username){
         try {
-            return new ObjectMapper().writeValueAsString(service.searchUser(username));
+            return new ObjectMapper().writeValueAsString(service.getUser(username));
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }

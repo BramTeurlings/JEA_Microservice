@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 
-    <persistence-unit name="NewPersistenceUnit">
-
+    <persistence-unit name="ChatPersistenceUnit" transaction-type="JTA">
+        <jta-data-source>jdbc/__chat</jta-data-source>
         <class>models.User</class>
         <class>Models.Kweet</class>
 
         <properties>
+            <!--<property name="eclipselink.connection-pool.user_pool" value="1" />-->
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/chatsystem"/>
             <property name="javax.persistence.jdbc.user" value="root" />
@@ -17,3 +18,5 @@
     </persistence-unit>
 
 </persistence>
+
+
