@@ -15,7 +15,7 @@ public class UserService {
     public User getUserByUsername(String username){
         try {
 
-            URL url = new URL("http://localhost:8080/UserSystem-1.0-SNAPSHOT/api/user/user");
+            URL url = new URL("http://localhost:8080/UserSystem-1.0-SNAPSHOT/api/user/" + username);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");

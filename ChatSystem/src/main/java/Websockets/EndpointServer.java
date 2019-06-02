@@ -124,13 +124,11 @@ public class EndpointServer {
     private List<Session> liveSessions(){
         List<Session> liveSessions = new ArrayList<>();
 
-        for(int i = 0; i < users.size(); i++){
-            for(Session session : session.getOpenSessions()){
-                try{
-                    liveSessions.add(session);
-                }catch (Exception e){
-                    System.out.println("User's token is expired");
-                }
+        for(Session sessions : session.getOpenSessions()){
+            try{
+                liveSessions.add(sessions);
+            }catch (Exception e){
+                System.out.println("User's token is expired");
             }
         }
 

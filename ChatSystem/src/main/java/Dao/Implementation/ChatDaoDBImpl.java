@@ -2,10 +2,12 @@ package Dao.Implementation;
 
 import Dao.ChatDao;
 import Models.Kweet;
+import REST.UserService;
 import models.User;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
@@ -15,6 +17,8 @@ import java.util.List;
 public class ChatDaoDBImpl implements ChatDao {
     @PersistenceContext(unitName = "ChatPersistenceUnit")
     public EntityManager em;
+
+    public UserService service = new UserService();
 
     public List<Kweet> getKweets() {
         List<Kweet> kweets = em.createNamedQuery("Kweet.getKweets", Kweet.class).getResultList();
@@ -46,7 +50,14 @@ public class ChatDaoDBImpl implements ChatDao {
     }
 
     public void addKweet(Kweet kweet) {
-        em.persist(kweet);
+        try{
+            User user = service.getUserByUsername(kweet.getAuthor().getUsername());
+            kweet.setAuthor(user);
+            em.merge(kweet);
+        }
+        catch(Exception e){
+            em.persist(kweet);
+        }
     }
 
     public void addUser(User user) {
