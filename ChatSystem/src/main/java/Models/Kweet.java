@@ -1,7 +1,5 @@
 package Models;
 
-import models.User;
-
 import javax.persistence.*;
 import javax.ws.rs.core.Link;
 import java.util.ArrayList;
@@ -19,7 +17,7 @@ import java.util.List;
         @NamedQuery(name="Kweet.searchKweet",
                 query="SELECT k FROM Kweet k WHERE k.message LIKE :message"),
         @NamedQuery(name="Kweet.getKweetByUser",
-                query="SELECT k FROM Kweet k WHERE k.author.username = :username")
+                query="SELECT k FROM Kweet k WHERE k.author = :username")
 
 })
 public class Kweet {
@@ -34,11 +32,11 @@ public class Kweet {
     @Temporal(TemporalType.TIMESTAMP)
     private Date timestamp;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    private User author;
+    @Column
+    private String author;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    private User recipient;
+    @Column
+    private String recipient;
 
     @Transient
     private List<Link> selfLinks = new ArrayList<>();
@@ -47,7 +45,7 @@ public class Kweet {
 
     }
 
-    public Kweet(String message, Date timestamp, User author, User recipient){
+    public Kweet(String message, Date timestamp, String author, String recipient){
         this.message = message;
         this.timestamp = timestamp;
         this.author = author;
@@ -79,19 +77,11 @@ public class Kweet {
         this.timestamp = timestamp;
     }
 
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
-
-    public User getRecipient() {
+    public String getRecipient() {
         return recipient;
     }
 
-    public void setRecipient(User recipient) {
+    public void setRecipient(String recipient) {
         this.recipient = recipient;
     }
 
@@ -101,5 +91,13 @@ public class Kweet {
 
     public void setSelfLinks(List<Link> selfLinks) {
         this.selfLinks = selfLinks;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

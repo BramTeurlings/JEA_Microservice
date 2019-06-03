@@ -2,7 +2,6 @@ package Service;
 
 import Dao.ChatDao;
 import Models.Kweet;
-import models.User;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -30,7 +29,7 @@ public class ChatService implements Serializable {
         return kweetsDao.searchKweet(term);
     }
 
-    public List<Kweet> getKweetsByUser(User user){
+    public List<Kweet> getKweetsByUser(String user){
         return kweetsDao.getKweetsByUser(user);
     }
 }

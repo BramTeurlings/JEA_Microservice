@@ -1,7 +1,7 @@
 package Dao;
 
 import Models.Group;
-import models.User;
+import Models.User;
 
 import java.util.List;
 
@@ -12,4 +12,5 @@ public interface UserDao {
     User getUser(String name);
     void createUser(User user, Group group);
     List<User> searchUsers(String username);
+    User authenticate(String username, String password);
 }

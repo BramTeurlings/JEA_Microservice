@@ -3,15 +3,15 @@ package models;
 public class LoginResponse {
 
     public String token;
-    public User user;
+    public String username;
 
     public LoginResponse(){
 
     }
 
-    public LoginResponse(String token, User user) {
+    public LoginResponse(String token, String user) {
         this.token = token;
-        this.user = user;
+        this.username = user;
     }
 
     public String getToken() {
@@ -22,11 +22,11 @@ public class LoginResponse {
         this.token = token;
     }
 
-    public User getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

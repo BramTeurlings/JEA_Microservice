@@ -1,12 +1,11 @@
 package Endpoints;
 
+import REST.UserService;
 import models.SimpleKeyGenerator;
 import models.LoginResponse;
-import Service.AuthenticationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import models.User;
 import org.glassfish.jersey.process.internal.RequestScoped;
 
 import javax.ejb.Stateless;
@@ -30,7 +29,7 @@ public class AuthenticationResource extends Application{
     private UriInfo uriInfo;
 
     @Inject
-    AuthenticationService service;
+    UserService userService;
 
     @Inject
     private SimpleKeyGenerator keyGenerator;
@@ -43,9 +42,8 @@ public class AuthenticationResource extends Application{
     public Response authenticateUser(@FormParam("username") String username,
                                      @FormParam("password") String password) {
         try {
-
             // Authenticate the user using the credentials provided
-            User user = authenticate(username, password);
+            String user = userService.authenticateUser(username, password);
 
             // Issue a token for the user
             String token = issueToken(username);
@@ -58,8 +56,8 @@ public class AuthenticationResource extends Application{
         }
     }
 
-    private User authenticate(String username, String password) throws Exception {
-        User user = service.authenticateUser(username, password);
+    private String authenticate(String username, String password) throws Exception {
+        String user = userService.authenticateUser(username, password);
 
         if (user == null){
             throw new SecurityException("Invalid user/password");

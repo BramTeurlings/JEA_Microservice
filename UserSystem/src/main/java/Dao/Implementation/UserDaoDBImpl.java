@@ -3,12 +3,14 @@ package Dao.Implementation;
 import models.AuthenticationUtils;
 import Dao.UserDao;
 import Models.Group;
-import models.User;
+import models.PasswordUtils;
+import Models.User;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,5 +63,13 @@ public class UserDaoDBImpl implements UserDao, Serializable{
             e.printStackTrace();
         }
         return new ArrayList<>();
+    }
+
+    @Override
+    public User authenticate(String username, String password) {
+        TypedQuery<User> query = em.createNamedQuery("User.getUserByLoginPassword", User.class);
+        query.setParameter("username", username);
+        query.setParameter("password", PasswordUtils.digestPassword(password));
+        return query.getSingleResult();
     }
 }

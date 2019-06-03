@@ -2,7 +2,7 @@ package Dao.Implementation;
 
 import Dao.UserDao;
 import Models.Group;
-import models.User;
+import Models.User;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.ejb.Stateless;
@@ -45,6 +45,11 @@ public class UserImplementation implements UserDao
 
     @Override
     public List<User> searchUsers(String username) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public User authenticate(String username, String password) {
         throw new NotImplementedException();
     }
 }

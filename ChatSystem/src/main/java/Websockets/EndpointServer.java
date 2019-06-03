@@ -1,10 +1,8 @@
 package Websockets;
 
-import REST.UserService;
 import models.AuthenticationFilter;
 import Models.Kweet;
 import models.LoginResponse;
-import models.User;
 import Service.ChatService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -33,10 +31,6 @@ public class EndpointServer {
     @Inject
     ChatService service;
 
-    private UserService userService = new UserService();
-
-    private final static List<User> users = new ArrayList<>();
-
     private AuthenticationFilter filter = new AuthenticationFilter();
 
     private HttpSession httpSession;
@@ -58,9 +52,10 @@ public class EndpointServer {
 
     @OnMessage
     public void onMessage(Session session, Message message){
-        User user = parseSession(session);
-        //Get database user.
-        user = userService.getUserByUsername(user.getUsername());
+        String username = parseSession(session);
+
+        //We are going to assume that the username is correct since the sessions was validated
+        //user = userService.getUserByUsername(user.getUsername());
 
         //Check which followers are live at the moment and send them the message.
         List<Session> liveSessions = liveSessions();
@@ -69,7 +64,7 @@ public class EndpointServer {
         Kweet kweet = new Kweet();
 
         kweet.setMessage(message.getText());
-        kweet.setAuthor(user);
+        kweet.setAuthor(username);
         kweet.setTimestamp(new Date());
 
         //Add kweet to database
@@ -105,7 +100,7 @@ public class EndpointServer {
         );
     }
 
-    public User parseSession(Session session){
+    public String parseSession(Session session){
         //Check if token valid.
         try {
             //Convert to login object:
@@ -114,7 +109,7 @@ public class EndpointServer {
             response.setToken(token);
             String loginResponse = mapper.writeValueAsString(response);
             String username = filter.validateToken(loginResponse);
-            return new User(username);
+            return username;
         } catch (Exception e) {
             e.printStackTrace();
         }

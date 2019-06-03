@@ -3,7 +3,6 @@
 
     <persistence-unit name="ChatPersistenceUnit" transaction-type="JTA">
         <jta-data-source>jdbc/__chat</jta-data-source>
-        <class>models.User</class>
         <class>Models.Kweet</class>
 
         <properties>

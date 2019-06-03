@@ -2,7 +2,7 @@ package Service;
 
 import Dao.UserDao;
 import Models.Group;
-import models.User;
+import Models.User;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -21,6 +21,10 @@ public class UserService implements Serializable {
     public void addUser(User user){
         userDao.addUser(user);
 
+    }
+
+    public User authenticate(String username, String password){
+        return userDao.authenticate(username, password);
     }
 
     public void registerUser(User user, Group group){userDao.createUser(user, group);}

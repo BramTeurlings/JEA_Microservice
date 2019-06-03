@@ -42,7 +42,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         LoginResponse user = mapper.readValue(readableHeader, LoginResponse.class);
 
         //Validate the user
-        if(user.user.getUsername() == null){
+        if(user == null){
             abortWithUnauthorized(requestContext);
         }
 

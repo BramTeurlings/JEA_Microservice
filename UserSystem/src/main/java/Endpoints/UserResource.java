@@ -5,7 +5,7 @@ import models.Secured;
 import Service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import models.User;
+import Models.User;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -49,6 +49,15 @@ public class UserResource extends Application {
 
         return Response.ok(genericEntity)
                 .links(self, allLink, searchLink).build();
+    }
+
+    @POST
+    @Path("/login")
+    @Consumes(APPLICATION_FORM_URLENCODED)
+    public String authenticateUser(@FormParam("username") String username,
+                                     @FormParam("password") String password) {
+        User user = service.authenticate(username, password);
+        return user.getUsername();
     }
 
     @POST

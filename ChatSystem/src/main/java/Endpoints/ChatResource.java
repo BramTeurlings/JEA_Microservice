@@ -5,7 +5,6 @@ import Service.ChatService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import models.Secured;
-import models.User;
 
 import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
@@ -58,16 +57,11 @@ public class ChatResource extends Application {
     @Consumes("application/json")
     public void addKweet(@QueryParam("content") String message,
                          @QueryParam("author") String author){
-        try {
-            User user = mapper.readValue(author, User.class);
-            Kweet kweet = new Kweet();
-            kweet.setMessage(message);
-            kweet.setAuthor(user);
-            kweet.setTimestamp(new Date());
-            service.addKweet(kweet);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Kweet kweet = new Kweet();
+        kweet.setMessage(message);
+        kweet.setAuthor(author);
+        kweet.setTimestamp(new Date());
+        service.addKweet(kweet);
 
     }
 
